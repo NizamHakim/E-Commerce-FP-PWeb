@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function index()
-    {
-        return view('cart');
+    {   
+        $user_id = Auth::user()->id;
+        $cartItems = Cart::where('user_id', $user_id)->get();
+
+        return view('cart', [
+            'cartItems' => $cartItems
+        ]);
     }
 
     public function store(Request $request)
     {   
-        // $inputdata['user_id'] = auth()->user()->id;
-        $inputdata['user_id'] = 1;
+        $inputdata['user_id'] = Auth::user()->id;
         $inputdata['item_id'] = $request->item_id;
         $inputdata['quantity'] = $request->quantity;
 
@@ -25,7 +30,8 @@ class CartController extends Controller
     }
 
     public function destroy($id)
-    {
-        return view('cart');
+    {   
+        Cart::destroy($id);
+        return redirect()->route('cart.index');
     }
 }

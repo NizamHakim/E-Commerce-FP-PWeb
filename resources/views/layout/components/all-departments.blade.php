@@ -55,9 +55,9 @@
             </div>
             <div class="right">
                 <div class="search-box">
-                    <form action="" class="search">
+                    <form method="GET" action="{{ route('item.search') }}" class="search">
                         <span class="icon-large"><i class="ri-search-line"></i></span>
-                        <input type="search" placeholder="Search for products">
+                        <input type="search" name="keyword" placeholder="Search for products">
                         <button type="submit">Search</button>
                     </form>
                 </div>

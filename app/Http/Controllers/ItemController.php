@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Item;
 use App\Models\ItemCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -27,9 +28,9 @@ class ItemController extends Controller
         $relatedItems = Item::where('item_category_id', $itemdetails->item_category_id)->inRandomOrder()->limit(4)->get();
         $itemlist_title = "Related Items";
 
-        if (auth()->check()) {
+        if (Auth::check()) {
             $match = [
-                'user_id' => auth()->user()->id,
+                'user_id' => Auth::user()->id,
                 'item_id' => $id
             ];
     
@@ -119,5 +120,16 @@ class ItemController extends Controller
 
         Item::create($validated);
         return redirect('items')->with('status', 'Item Added Successfully');
+    }
+
+    public function search(Request $request)
+    {
+        $items = Item::where('name', 'like', '%'.$request->keyword.'%')->get();
+        $itemlist_title = "Search Results for \"$request->keyword\"";
+
+        return view('category', [
+            'itemlist' => $items,
+            'itemlist_title' => $itemlist_title
+        ]);
     }
 }

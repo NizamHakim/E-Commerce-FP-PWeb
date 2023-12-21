@@ -7,7 +7,6 @@
                 <div class="page-title">
                     <h1>Shopping Cart</h1>
                 </div>
-
                 <div class="products one cart">
                     <div class="flexwrap">
                         <form action="" class="form-cart">
@@ -23,91 +22,59 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="flexitem">
-                                                <div class="thumbnail object-cover">
-                                                    <a href="#"><img src="https://placehold.co/200x200"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <strong><a href="#">Dimmable Ceiling Light Modern</a></strong>
-                                                </div>
-                                            </td>
-                                            <td>$279.99</td>
-                                            <td>
-                                                <div class="qty-control flexitem">
-                                                    <button class="minus">-</button>
-                                                    <input type="text" value="2" min="1">
-                                                    <button class="plus">+</button>
-                                                </div>
-                                            </td>
-                                            <td>$559.98</td>
-                                            <td><a href="#" class="item-remove"><i class="ri-close-line"></i></a></td>
-                                        </tr>
+                                        @foreach ($cartItems as $cart)
+                                            <tr>
+                                                <td class="flexitem">
+                                                    <div class="thumbnail object-cover">
+                                                        <a href="{{ route('item.detail', $cart->item_id) }}"><img src="{{ asset($cart->item->image) }}"></a>
+                                                    </div>
+                                                    <div class="content">
+                                                        <strong><a href="{{ route('item.detail', $cart->item_id) }}">{{ $cart->item->name }}</a></strong>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $cart->item->price }}</td>
+                                                <td>{{ $cart->quantity }}</td>
+                                                <td id="sub-total"></td>
+                                                <td><a href="/cart/remove/{{ $cart->id }}" class="item-remove"><i class="ri-close-line"></i></a></td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </form>
                         <div class="cart-summary styled">
                             <div class="item">
-                                <div class="shipping-rate collapse">
-                                    <div class="has-child expand">
-                                        <a href="#" class="icon-small">Estimate Shipping and Tax</a>
-                                        <div class="content">
-                                            <div class="countries">
-                                                <form action="">
-                                                    <label for="country">Country</label>
-                                                    <select name="country" id="country">
-                                                        <option value=""></option>
-                                                        <option value="1">Afganistan</option>
-                                                        <option value="2">Aland Islan</option>
-                                                        <option value="3">Albania</option>
-                                                        <option value="4" selected="selected">United States</option>
-                                                        <option value="5">Others</option>
-                                                    </select>
-                                                </form>
-                                            </div>
-                                            <div class="states">
-                                                <form action="">
-                                                    <label for="state">State/Province</label>
-                                                    <select name="state" id="state">
-                                                        <option value="">Select a region, state or province</option>
-                                                        <option value="1">Alabama</option>
-                                                        <option value="2">Alaska</option>
-                                                        <option value="3">American Samoa</option>
-                                                        <option value="4">Arizona</option>
-                                                        <option value="5">Arkansas</option>
-                                                        <option value="6">Others</option>
-                                                    </select>
-                                                </form>
-                                            </div>
-                                            <div class="postal-code">
-                                                <form action="">
-                                                    <label for="postal">Zip/Postal Code</label>
-                                                    <input type="number" name="postal" id="postal">
-                                                </form>
+                                <form method="POST" action="{{ route('order.create') }}">
+                                    @csrf
+                                    <div class="shipping-rate collapse">
+                                        <div class="has-child expand">
+                                            <a href="#" class="icon-small" style="margin-bottom: 0">Address</a>
+                                            <div class="content">
+                                                <textarea name="address" id="" cols="30" rows="10" required></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="cart-total">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Subtotal</th>
-                                                <td>$2155.95</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Shipping <span class="mini-text">(Flat)</span></th>
-                                                <td>$10.00</td>
-                                            </tr>
-                                            <tr class="grand-total">
-                                                <th>TOTAL</th>
-                                                <td><strong>$2065.95</strong></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <a href="#" class="secondary-button">Checkout</a>
-                                </div>
+                                    <div class="cart-total">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Subtotal</th>
+                                                    <td id="cart-total"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Shipping</th>
+                                                    <td>Free Shipping</td>
+                                                </tr>
+                                                <tr class="grand-total">
+                                                    <th>TOTAL</th>
+                                                    <td><strong id="grand-total"></strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <input id="order-total" name="total" type="hidden" value="">
+                                        <button type="submit" class="secondary-button">Checkout</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
