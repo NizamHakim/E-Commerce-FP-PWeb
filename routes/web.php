@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use App\Models\Item;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,23 @@ use App\Http\Controllers\ItemController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::middleware('only_guest')->group(function() {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'authenticating']);
+    Route::get('register', [AuthController::class, 'register']);
+    Route::post('register', [AuthController::class, 'registerProcess']);
+});
+
+Route::middleware('auth')->group(function() {
+    Route::get('logout', [AuthController::class, 'logout']);
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
+
+    Route::get('items', [ItemController::class, 'list']);
+    Route::get('item-add', [ItemController::class, 'add']);
+    Route::post('item-add', [ItemController::class, 'store']);
+});
 
 Route::controller(ItemController::class)->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('item.index');
