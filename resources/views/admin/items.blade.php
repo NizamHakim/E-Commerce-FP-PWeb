@@ -41,7 +41,7 @@
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->stock }}</td>
                         <td>
-                            <a href="#">Edit</a>
+                            <a href="/item-edit/{{ $item->id }}">Edit</a>
                             <a href="#">Delete</a>
                         </td>
                     </tr>

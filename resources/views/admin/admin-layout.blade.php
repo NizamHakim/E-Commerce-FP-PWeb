@@ -24,7 +24,7 @@
             <div class="row g-0 h-100">
                 <div class="sidebar col-lg-2 collapse d-lg-block" id="navbarTogglerDemo03">
                     <a href="/dashboard" @if (request()->route()->uri == 'dashboard') class="active" @endif>Dashboard</a>
-                    <a href="/items" @if (request()->route()->uri == 'items' || request()->route()->uri == 'item-add') class="active" @endif>Items</a>
+                    <a href="/items" @if (request()->route()->uri == 'items' || request()->route()->uri == 'item-add' || request()->route()->uri == 'item-edit/{id}') class="active" @endif>Items</a>
                     <a href="/logout">Logout</a>
 
                     {{-- @if (Auth::user()->role_id == 1)

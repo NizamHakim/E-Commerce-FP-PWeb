@@ -32,11 +32,16 @@ Route::middleware('only_guest')->group(function() {
 Route::middleware('auth')->group(function() {
     Route::get('logout', [AuthController::class, 'logout']);
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
+    Route::middleware('only_admin')->group(function() {
+        Route::get('dashboard', [DashboardController::class, 'index']);
+    
+        Route::get('items', [ItemController::class, 'list']);
+        Route::get('item-add', [ItemController::class, 'add']);
+        Route::post('item-add', [ItemController::class, 'store']);
+        Route::get('item-edit/{id}', [ItemController::class, 'edit']);
+        Route::post('item-edit/{id}', [ItemController::class, 'update']);
+    });
 
-    Route::get('items', [ItemController::class, 'list']);
-    Route::get('item-add', [ItemController::class, 'add']);
-    Route::post('item-add', [ItemController::class, 'store']);
 });
 
 Route::controller(ItemController::class)->group(function () {
