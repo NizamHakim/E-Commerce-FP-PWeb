@@ -71,7 +71,7 @@ class ItemController extends Controller
 
     public function edit($id)
     {
-        $item = Item::where('id', $id)->first();
+        $item = Item::find($id);
         $categories = ItemCategory::all();
         return view('admin.item-edit', ['item' => $item, 'categories' => $categories]);
     }
@@ -109,23 +109,35 @@ class ItemController extends Controller
             $request->file('image')->storeAs($folder, $newName);
             $validated['image'] = 'storage/' . $folder . '/' . $newName;
         }
-        $item = Item::where('id', $id)->first();
+        $item = Item::find($id);
         $item->update($validated);
 
         return redirect('/items')->with('status', 'Item Updated Successfully');
+    }
 
-        // Item::create($validated);
-        // return redirect('items')->with('status', 'Item Added Successfully');
+    public function delete($id)
+    {
+        $item = Item::find($id);
+        return view('admin.item-delete', ['item' => $item]);
+    }
 
-        
+    public function destroy($id)
+    {
+        $item = Item::find($id);
+        $item->delete();
+        return redirect('/items')->with('status', 'Item Deleted Successfully');
+    }
 
-        // $book = Book::where('slug', $slug)->first();
-        // $book->update($request->all());
+    public function deletedBook()
+    {
+        $deletedItems = Item::onlyTrashed()->get();
+        return view('admin.item-deleted', ['deletedItems' => $deletedItems]);
+    }
 
-        // if($request->categories){
-        //     $book->categories()->sync($request->categories);
-        // }
-
-        // return redirect('books')->with('status', 'Book Updated Successfully');
+    public function restore($id)
+    {
+        $item = Item::withTrashed()->find($id);
+        $item->restore();
+        return redirect('/items')->with('status', 'Item Restored Successfully');
     }
 }

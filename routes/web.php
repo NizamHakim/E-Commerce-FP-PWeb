@@ -38,10 +38,15 @@ Route::middleware('auth')->group(function() {
         Route::get('items', [ItemController::class, 'list']);
         Route::get('item-add', [ItemController::class, 'add']);
         Route::post('item-add', [ItemController::class, 'store']);
+
         Route::get('item-edit/{id}', [ItemController::class, 'edit']);
         Route::post('item-edit/{id}', [ItemController::class, 'update']);
-    });
 
+        Route::get('item-delete/{id}', [ItemController::class, 'delete']);
+        Route::get('item-destroy/{id}', [ItemController::class, 'destroy']);
+        Route::get('item-deleted', [ItemController::class, 'deletedBook']);
+        Route::get('item-restore/{id}', [ItemController::class, 'restore']);
+    });
 });
 
 Route::controller(ItemController::class)->group(function () {
