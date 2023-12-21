@@ -6,8 +6,8 @@
     <h1>Item List</h1>
 
     <div class="my-5 d-flex justify-content-end">
-        <a href="/book-deleted" class="btn btn-secondary me-3">View Deleted Items</a>
-        <a href="/book-add" class="btn btn-primary">Add Item</a>
+        <a href="/item-deleted" class="btn btn-secondary me-3">View Deleted Items</a>
+        <a href="/item-add" class="btn btn-primary">Add Item</a>
     </div>
 
     <div class="mt-5">

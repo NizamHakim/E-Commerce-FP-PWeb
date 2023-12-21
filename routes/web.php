@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
 
     Route::get('items', [ItemController::class, 'list']);
+    Route::get('item-add', [ItemController::class, 'add']);
+    Route::post('item-add', [ItemController::class, 'store']);
 });
 
 Route::controller(ItemController::class)->group(function () {
