@@ -3,7 +3,7 @@
         <div class="wrapper">
             <div class="column">
                 <div class="sectop flexitem">
-                    <h2><span class="circle"></span><span>{{ $itemlist_title }}</span></h2>
+                    <h2><span class="circle"></span><span style="text-transform: capitalize">{{ $itemlist_title }}</span></h2>
                 </div>
                 <div class="products main flexwrap">
                     @foreach ($itemlist as $item)

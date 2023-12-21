@@ -60,12 +60,9 @@ Route::controller(ItemController::class)->group(function () {
     Route::get('/search', [ItemController::class, 'search'])->name('item.search');
 });
 
-Route::controller(CartController::class)->group(function () {
+Route::middleware('auth')->group(function() {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
     Route::get('/cart/remove/{id}', [CartController::class, 'destroy'])->name('cart.remove');
-});
-
-Route::controller(OrderController::class)->group(function () {
     Route::post('/order/create', [OrderController::class, 'store'])->name('order.create');
 });

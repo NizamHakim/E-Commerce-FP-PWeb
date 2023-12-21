@@ -44,10 +44,10 @@
                     <input type="text" name="phone" id="phone" class="form-control">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary form-control">Register</button>
+                    <button id="register-submit" type="submit" class="btn btn-primary form-control">Register</button>
                 </div>
                 <div class="text-center">
-                    Have account? <a href="login">Login</a>
+                    Have account? <a href="login" style="text-decoration: none;">Login</a>
                 </div>
             </form>
         </div>

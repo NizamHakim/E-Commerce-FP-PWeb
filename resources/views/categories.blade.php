@@ -13,7 +13,7 @@
                                             <img src="{{ asset($categoryImages[$category->id]->image) }}">
                                         </div>
                                         <div class="content mini-links">
-                                            <h4><a href="{{ route('item.category', $category->id) }}">{{ $category->name }}</a></h4>
+                                            <h4 style="text-transform: capitalize"><a href="{{ route('item.category', $category->id) }}">{{ $category->name }}</a></h4>
                                             <ul class="flexcol">
                                                 @for ($i = 0; $i < 4; $i++)
                                                     <li><a href="{{ route('item.detail', $category->items[$i]->id) }}">{{ $category->items[$i]->name }}</a></li>

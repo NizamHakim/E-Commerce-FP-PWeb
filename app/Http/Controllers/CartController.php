@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,9 +13,11 @@ class CartController extends Controller
     {   
         $user_id = Auth::user()->id;
         $cartItems = Cart::where('user_id', $user_id)->get();
+        $itemscount = Item::count();
 
         return view('cart', [
-            'cartItems' => $cartItems
+            'cartItems' => $cartItems,
+            'itemscount' => $itemscount
         ]);
     }
 

@@ -27,10 +27,10 @@
                     <input type="password" name="password" id="password" class="form-control" required>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary form-control">Login</button>
+                    <button id="login-submit" type="submit" class="btn btn-primary form-control">Login</button>
                 </div>
                 <div class="text-center">
-                    Don't have account? <a href="register">Sign Up</a>
+                    Don't have account? <a href="register" style="text-decoration: none;">Sign Up</a>
                 </div>
             </form>
         </div>

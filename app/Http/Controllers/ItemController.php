@@ -15,10 +15,12 @@ class ItemController extends Controller
         $trending5 = Item::inRandomOrder()->limit(7)->get();
         $featuredItems = Item::inRandomOrder()->limit(4)->get();
         $itemlist_title = "Featured Items";
+        $itemscount = Item::count();
         return view('index', [
             'trending5' => $trending5,
             'itemlist' => $featuredItems,
-            'itemlist_title' => $itemlist_title
+            'itemlist_title' => $itemlist_title,
+            'itemscount' => $itemscount
         ]);
     }
 
@@ -27,6 +29,7 @@ class ItemController extends Controller
         $itemdetails = Item::find($id);
         $relatedItems = Item::where('item_category_id', $itemdetails->item_category_id)->inRandomOrder()->limit(4)->get();
         $itemlist_title = "Related Items";
+        $itemscount = Item::count();
 
         if (Auth::check()) {
             $match = [
@@ -40,7 +43,8 @@ class ItemController extends Controller
                 'itemdetails' => $itemdetails,
                 'itemlist' => $relatedItems,
                 'itemlist_title' => $itemlist_title,
-                'addedToCart' => $addedToCart
+                'addedToCart' => $addedToCart,
+                'itemscount' => $itemscount
             ]);
             
         } else {
@@ -48,7 +52,8 @@ class ItemController extends Controller
                 'itemdetails' => $itemdetails,
                 'itemlist' => $relatedItems,
                 'itemlist_title' => $itemlist_title,
-                'addedToCart' => false
+                'addedToCart' => false,
+                'itemscount' => $itemscount
             ]);
         }
     }
@@ -61,11 +66,13 @@ class ItemController extends Controller
             $categoryImages[$category->id] = Item::where('item_category_id', $category->id)->first('image');
         }
         $items = Item::all();
+        $itemscount = Item::count();
 
         return view('categories', [
             'categories' => $categories,
             'categoryImages' => $categoryImages,
-            'items' => $items
+            'items' => $items,
+            'itemscount' => $itemscount
         ]);
     }
 
@@ -74,10 +81,12 @@ class ItemController extends Controller
         $itemsfromcategory = Item::where('item_category_id', $id)->get();
         $categoryname = ItemCategory::find($id)->name;
         $itemlist_title = "$categoryname";
+        $itemscount = Item::count();
         
         return view('category', [
             'itemlist' => $itemsfromcategory,
-            'itemlist_title' => $itemlist_title
+            'itemlist_title' => $itemlist_title,
+            'itemscount' => $itemscount
         ]);
     }
 
@@ -131,10 +140,12 @@ class ItemController extends Controller
     {
         $items = Item::where('name', 'like', '%'.$request->keyword.'%')->get();
         $itemlist_title = "Search Results for \"$request->keyword\"";
+        $itemscount = Item::count();
 
         return view('category', [
             'itemlist' => $items,
-            'itemlist_title' => $itemlist_title
+            'itemlist_title' => $itemlist_title,
+            'itemscount' => $itemscount
         ]);
     }
   

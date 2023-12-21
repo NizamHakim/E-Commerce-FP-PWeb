@@ -1,13 +1,21 @@
 .main {
     height: 100vh;
+    background-color: #453c5c
 }
 
 .register-box {
     width: 500px;
     border: solid 1px;
     padding: 30px;
+    background-color: white;
+    border-radius: 5%;
 }
 
 form div {
     margin-bottom: 15px;
+}
+
+#register-submit {
+    background-color: #ff6b6b;
+    border: none;
 }

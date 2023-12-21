@@ -1,14 +1,22 @@
 .main {
     height: 100vh;
     box-sizing: border-box;
+    background-color: #453c5c
 }
 
 .login-box {
     width: 500px;
     border: solid 1px;
     padding: 30px;
+    background-color: white;
+    border-radius: 5%;
 }
 
 form div {
     margin-bottom: 15px;
+}
+
+#login-submit{
+    background-color: #ff6b6b;
+    border: none;
 }
