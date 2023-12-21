@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,9 @@ Route::middleware('only_guest')->group(function() {
 Route::middleware('auth')->group(function() {
     Route::get('logout', [AuthController::class, 'logout']);
 
-    // Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
+    Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
 
-    // Route::get('profile', [UserController::class, 'profile'])->middleware('only_client');
+    Route::get('items', [ItemController::class, 'list']);
 });
 
 Route::controller(ItemController::class)->group(function () {
