@@ -4,12 +4,6 @@
     <div class="single-cart">
         <div class="container">
             <div class="wrapper">
-                <div class="breadcrumb">
-                    <ul class="flexitem">
-                        <li><a href="#">Home</a></li>
-                        <li>Cart</li>
-                    </ul>
-                </div>
                 <div class="page-title">
                     <h1>Shopping Cart</h1>
                 </div>
@@ -36,7 +30,6 @@
                                                 </div>
                                                 <div class="content">
                                                     <strong><a href="#">Dimmable Ceiling Light Modern</a></strong>
-                                                    <p>Color: Gold</p>
                                                 </div>
                                             </td>
                                             <td>$279.99</td>
@@ -56,11 +49,6 @@
                         </form>
                         <div class="cart-summary styled">
                             <div class="item">
-                                <div class="coupon">
-                                    <input type="text" placeholder="Enter coupon">
-                                    <button>Apply</button>
-                                </div>
-
                                 <div class="shipping-rate collapse">
                                     <div class="has-child expand">
                                         <a href="#" class="icon-small">Estimate Shipping and Tax</a>
@@ -107,10 +95,6 @@
                                             <tr>
                                                 <th>Subtotal</th>
                                                 <td>$2155.95</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Discount</th>
-                                                <td>$100.00</td>
                                             </tr>
                                             <tr>
                                                 <th>Shipping <span class="mini-text">(Flat)</span></th>

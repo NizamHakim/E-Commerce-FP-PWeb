@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Item;
+use Illuminate\Support\Facades\View;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $itemscount = Item::count();
+        View::share('itemscount', $itemscount);
     }
 }
