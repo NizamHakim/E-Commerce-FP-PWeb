@@ -236,6 +236,22 @@ h4{
     margin-bottom: 2em;
 }
 
+.create-order{
+    font-size: var(--font-small);
+    padding: 0.9em 2em;
+    height: auto;
+    width: fit-content;
+    border-radius: 2em;
+    transition: var(--trans-background-color);
+    background-color: var(--secondary-dark-color);
+    color: var(--white-color);
+}
+
+.create-order:hover{
+    background-color: var(--light-bg-color);
+    color: var(--secondary-dark-color);
+}
+
 /* -------------------
  * 1. HEADER
  * -------------------*/
@@ -1364,6 +1380,17 @@ form.search button:hover{
     cursor: pointer;
 }
 
+.products .view-in-cart{
+    flex: 1;
+    min-width: 100px;
+}
+
+.products .view-in-cart button{
+    width: var(--percent100);
+    cursor: pointer;
+    font-size: 15px;
+}
+
 .products .collapse .has-child > a{
     position: relative;
     font-weight: var(--fw7);
@@ -1650,12 +1677,19 @@ form.search button:hover{
     line-height: 2em;
 }
 
-.cart-summary .cart-total > a{
+.cart-summary .cart-total > button{
     width: var(--percent100);
     display: block;
     text-align: center;
     margin-top: 2em;
     font-size: 1.25em;
+    cursor: pointer;
+}
+
+#button-remove{
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 /* -------------------

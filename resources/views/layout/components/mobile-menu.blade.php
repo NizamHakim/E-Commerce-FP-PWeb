@@ -4,21 +4,9 @@
             <nav>
                 <ul class="flexitem">
                     <li>
-                        <a href="#">
-                            <i class="ri-bar-chart-line"></i>
-                            <span>Trending</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ri-user-6-line"></i>
-                            <span>Account</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ri-heart-line"></i>
-                            <span>Wishlist</span>
+                        <a href="{{ route('item.index') }}">
+                            <i class="ri-home-2-line"></i>
+                            <span>Home</span>
                         </a>
                     </li>
                     <li>
@@ -28,12 +16,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="cart-trigger">
+                        <a href="{{ route('cart.index') }}">
                             <i class="ri-shopping-cart-line"></i>
                             <span>Cart</span>
-                            <div class="fly-item">
-                                <span class="item-number">0</span>
-                            </div>
                         </a>
                     </li>
                 </ul>
@@ -45,10 +30,10 @@
 <div class="search-bottom desktop-hide">
     <div class="container">
         <div class="wrapper">
-            <form action="" class="search">
+            <form method="GET" action="{{ route('item.search') }}" class="search">
                 <a href="#" class="t-close search-close flexcenter"><i class="ri-close-line"></i></a>
                 <span class="icon-large"><i class="ri-search-line"></i></span>
-                <input type="search" placeholder="Search" required>
+                <input type="search" name="keyword" placeholder="Search for products">
                 <button type="submit">Search</button>
             </form>
         </div>

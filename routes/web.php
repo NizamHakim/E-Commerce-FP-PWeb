@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemCategoryController;
@@ -28,7 +29,7 @@ Route::middleware('only_guest')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware('only_admin')->group(function() {
         Route::get('dashboard', [DashboardController::class, 'index']);
@@ -56,6 +57,7 @@ Route::controller(ItemController::class)->group(function () {
     Route::get('/detail/{id}', [ItemController::class, 'detail'])->name('item.detail');
     Route::get('/categories', [ItemController::class, 'categories'])->name('item.categories');
     Route::get('/category/{id}', [ItemController::class, 'category'])->name('item.category');
+    Route::get('/search', [ItemController::class, 'search'])->name('item.search');
 });
 
 Route::controller(CartController::class)->group(function () {
@@ -64,6 +66,6 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart/remove/{id}', [CartController::class, 'destroy'])->name('cart.remove');
 });
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+Route::controller(OrderController::class)->group(function () {
+    Route::post('/order/create', [OrderController::class, 'store'])->name('order.create');
+});

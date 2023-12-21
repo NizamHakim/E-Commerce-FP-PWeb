@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use App\Models\Item;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 use Illuminate\Support\ServiceProvider;

@@ -68,27 +68,6 @@ dptButton.addEventListener('click', function(){
     dptClass.classList.toggle('showdpt');
 })
 
-//show cart on click
-const divToShow = '.mini-cart';
-const divPopup = document.querySelector(divToShow);
-const divTrigger = document.querySelector('.cart-trigger');
-
-divTrigger.addEventListener('click', () => {
-    setTimeout(() => {
-        if(!divPopup.classList.contains('show')){
-            divPopup.classList.add('show');
-        }
-    }, 250)
-})
-
-// close by click outside
-document.addEventListener('click', (e) => {
-    const isClosest = e.target.closest(divToShow);
-    if(!isClosest && divPopup.classList.contains('show')){
-        divPopup.classList.remove('show');
-    }
-})
-
 // modify order qty
 function increment() {
     var inputField = document.getElementById('detail-qty');
@@ -107,3 +86,25 @@ function decrement() {
         inputField.value = currentValue - 1;
     }
 }
+
+// cart
+let table = document.getElementById('cart-table');
+// Subtotal
+for (let i = 1; i < table.rows.length; i++) {
+    let price = parseFloat(table.rows[i].cells[1].innerHTML);
+    let qty = parseFloat(table.rows[i].cells[2].innerHTML);
+    table.rows[i].cells[3].innerHTML = "Rp" + price * qty;
+}
+
+// Total
+let sum = 0;
+for (let i = 1; i < table.rows.length; i++) {
+    let price = parseFloat(table.rows[i].cells[1].innerHTML);
+    let qty = parseFloat(table.rows[i].cells[2].innerHTML);
+    let subtotal = price * qty;
+    sum += subtotal;
+}
+console.log(sum);
+document.getElementById('cart-total').innerHTML = "Rp" + sum;
+document.getElementById('grand-total').innerHTML = "Rp" + sum;
+document.getElementById('order-total').value = sum;

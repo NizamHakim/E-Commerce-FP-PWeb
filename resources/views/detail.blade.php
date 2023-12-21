@@ -27,19 +27,21 @@
                                                 <span class="mini-text">10.000 reviews</span>
                                             </div>
                                             <div class="price">
-                                                <span class="current">$80.90</span>
+                                                <span class="current">{{ $itemdetails->price }}</span>
                                             </div>
                                             @if ($addedToCart)
-                                                <h1>Added to Cart</h1>
+                                                <div class="view-in-cart">
+                                                    <a href="{{ route('cart.index') }}"><button class="secondary-button">View in Cart</button></a>
+                                                </div>
                                             @else
                                                 <form method="POST" action="{{ route('cart.add') }}" >
                                                     @csrf
                                                     <div class="actions">
                                                         <input type="hidden" name="item_id" value="{{ $itemdetails->id }}">
                                                         <div class="qty-control flexitem">
-                                                            <button class="minus circle" onclick="decrement()">-</button>
+                                                            <button type="button" class="minus circle" onclick="decrement()">-</button>
                                                             <input id="detail-qty" type="text" name="quantity" value="1">
-                                                            <button class="plus circle" onclick="increment()">+</button>
+                                                            <button type="button" class="plus circle" onclick="increment()">+</button>
                                                         </div>
                                                         <div class="button-cart">
                                                             <button type="submit" class="primary-button">Add to cart</button>

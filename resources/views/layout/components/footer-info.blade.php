@@ -3,7 +3,7 @@
         <div class="wrapper">
             <div class="flexcol">
                 <div class="logo">
-                    <a href="#"><span class="circle"></span>.Store</a>
+                    <a href="#"><span class="circle"></span>pweb.Store</a>
                 </div>
                 <div class="socials">
                     <ul class="flexitem">
