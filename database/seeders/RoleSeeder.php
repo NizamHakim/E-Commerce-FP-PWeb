@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\ItemCategory;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class ItemCategorySeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,15 @@ class ItemCategorySeeder extends Seeder
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
-        ItemCategory::truncate();
+        Role::truncate();
         Schema::enableForeignKeyConstraints();
 
         $data = [
-            'beauty', 'electronic', 'fashion', 'home & kitchen', 'pet supplies', 'sports',
+            'admin', 'customer'
         ];
 
         foreach ($data as $value) {
-            ItemCategory::insert([
+            Role::insert([
                 'name' => $value
             ]);
         }
