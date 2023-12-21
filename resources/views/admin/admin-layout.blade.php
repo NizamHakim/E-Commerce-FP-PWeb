@@ -24,20 +24,10 @@
             <div class="row g-0 h-100">
                 <div class="sidebar col-lg-2 collapse d-lg-block" id="navbarTogglerDemo03">
                     <a href="/dashboard" @if (request()->route()->uri == 'dashboard') class="active" @endif>Dashboard</a>
-                    <a href="/items" @if (request()->route()->uri == 'items' || request()->route()->uri == 'item-add' || request()->route()->uri == 'item-edit/{id}') class="active" @endif>Items</a>
+                    <a href="/items" @if (request()->route()->uri == 'items' || request()->route()->uri == 'item-add' || request()->route()->uri == 'item-edit/{id}' || request()->route()->uri == 'item-delete/{id}' || request()->route()->uri == 'item-destroy/{id}' || request()->route()->uri == 'item-deleted' || request()->route()->uri == 'item-restore/{id}') class="active" @endif>Items</a>
+                    <a href="/category-list" @if (request()->route()->uri == 'category-list') class="active" @endif>Categories</a>
+                    <a href="/users" @if (request()->route()->uri == 'users') class="active" @endif>Users</a>
                     <a href="/logout">Logout</a>
-
-                    {{-- @if (Auth::user()->role_id == 1)
-                        <a href="/dashboard" @if (request()->route()->uri == 'dashboard') class="active" @endif>Dashboard</a>
-                        <a href="/books" @if (request()->route()->uri == 'books' || request()->route()->uri == 'book-add' || request()->route()->uri == 'book-delete/{slug}' || request()->route()->uri == 'book-edit/{slug}' || request()->route()->uri == 'book-deleted') class="active" @endif>Books</a>
-                        <a href="/categories" @if (request()->route()->uri == 'categories' || request()->route()->uri == 'category-add' || request()->route()->uri == 'category-delete/{slug}' || request()->route()->uri == 'category-edit/{slug}' || request()->route()->uri == 'category-deleted') class="active" @endif>Categories</a>
-                        <a href="/users" @if (request()->route()->uri == 'users' || request()->route()->uri == 'registered-users' || request()->route()->uri == 'user-detail/{slug}') class="active" @endif>Users</a>
-                        <a href="/rent-logs" @if (request()->route()->uri == 'rent-logs') class="active" @endif>Rent Log</a>
-                        <a href="/logout">Logout</a>
-                    @else
-                        <a href="/profile" @if (request()->route()->uri == 'profile') class="active" @endif>Profile</a>
-                        <a href="/logout">Logout</a>
-                    @endif --}}
                 </div>
                 <div class="content p-5 col-lg-10">
                     @yield('content')

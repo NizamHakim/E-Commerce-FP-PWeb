@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,10 @@ Route::middleware('auth')->group(function() {
         Route::get('item-destroy/{id}', [ItemController::class, 'destroy']);
         Route::get('item-deleted', [ItemController::class, 'deletedBook']);
         Route::get('item-restore/{id}', [ItemController::class, 'restore']);
+
+        Route::get('category-list', [ItemCategoryController::class, 'list']);
+
+        Route::get('users', [UserController::class, 'list']);
     });
 });
 
