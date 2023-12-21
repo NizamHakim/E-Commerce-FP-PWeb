@@ -16,19 +16,16 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-Route::get('/', function (){
-    return view('index');
-})->name('home');
-
 Route::controller(ItemController::class)->group(function () {
-    Route::get('/detail', [ItemController::class, 'detail'])->name('item.detail');
+    Route::get('/', [ItemController::class, 'index'])->name('item.index');
+    Route::get('/detail/{id}', [ItemController::class, 'detail'])->name('item.detail');
     Route::get('/categories', [ItemController::class, 'categories'])->name('item.categories');
     Route::get('/category/{id}', [ItemController::class, 'category'])->name('item.category');
 });
 
 Route::controller(CartController::class)->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::get('/cart/add/{id}', [CartController::class, 'store'])->name('cart.add');
+    Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
     Route::get('/cart/remove/{id}', [CartController::class, 'destroy'])->name('cart.remove');
 });
 

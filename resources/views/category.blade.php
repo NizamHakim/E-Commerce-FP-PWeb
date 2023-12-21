@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('content')
     <main>
-        @include('components.featured')
+        @include('components.itemlist')
     </main>
 @endsection

@@ -88,3 +88,22 @@ document.addEventListener('click', (e) => {
         divPopup.classList.remove('show');
     }
 })
+
+// modify order qty
+function increment() {
+    var inputField = document.getElementById('detail-qty');
+    var currentValue = parseInt(inputField.value, 10);
+
+    // Increment the value, but not beyond a certain limit (in this case, infinity)
+    inputField.value = currentValue + 1;
+}
+
+function decrement() {
+    var inputField = document.getElementById('detail-qty');
+    var currentValue = parseInt(inputField.value, 10);
+
+    // Decrement the value, but not below 0
+    if (currentValue > 1) {
+        inputField.value = currentValue - 1;
+    }
+}

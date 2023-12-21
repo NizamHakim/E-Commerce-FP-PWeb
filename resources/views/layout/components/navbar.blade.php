@@ -6,15 +6,15 @@
                 <div class="logo"><a href="/"><span class="circle"></span>.Store</a></div>
                 <nav class="mobile-hide">
                     <ul class="flexitem second-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Categories</a></li>
+                        <li><a href="{{ route('item.index') }}">Home</a></li>
+                        <li><a href="{{ route('item.categories') }}">Categories</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="right">
                 <ul class="flexitem second-links">
                     <li class="iscart">
-                        <a href="#">
+                        <a href="{{ route('cart') }}">
                             <div class="icon-large">
                                 <i class="ri-shopping-cart-line"></i>
                                 <div class="fly-item"><span class="item-number">0</span></div>
@@ -78,7 +78,6 @@
                                         <p><strong>$1,622.95</strong></p>
                                     </div>
                                     <div class="actions">
-                                        <a href="#" class="primary-button">Checkout</a>
                                         <a href="#" class="secondary-button">View Cart</a>
                                     </div>
                                 </div>

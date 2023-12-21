@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
-@if (Route::currentRouteName() == 'home')
+@if (Route::currentRouteName() == 'item.index')
     <div id="page" class="site page-home">
 @else
     <div id="page" class="site">
