@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use App\Models\Item;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 
 /*
@@ -19,6 +20,21 @@ use App\Http\Controllers\ItemController;
 Route::get('/', function (){
     return view('index');
 })->name('home');
+
+Route::middleware('only_guest')->group(function() {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'authenticating']);
+    Route::get('register', [AuthController::class, 'register']);
+    Route::post('register', [AuthController::class, 'registerProcess']);
+});
+
+Route::middleware('auth')->group(function() {
+    Route::get('logout', [AuthController::class, 'logout']);
+
+    // Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
+
+    // Route::get('profile', [UserController::class, 'profile'])->middleware('only_client');
+});
 
 Route::controller(ItemController::class)->group(function () {
     Route::get('/detail', [ItemController::class, 'detail'])->name('item.detail');
