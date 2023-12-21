@@ -1,13 +1,12 @@
 @extends('admin.admin-layout')
 
-@section('title', 'Items')
+@section('title', 'Deleted Items')
 
 @section('content')
-    <h1>Item List</h1>
+    <h1>Deleted Item List</h1>
 
-    <div class="my-5 d-flex justify-content-end">
-        <a href="/item-deleted" class="btn btn-secondary me-3">View Deleted Items</a>
-        <a href="/item-add" class="btn btn-primary">Add Item</a>
+    <div class="mt-5 d-flex justify-content-end">
+        <a href="/items" class="btn btn-primary">Back</a>
     </div>
 
     <div class="mt-5">
@@ -25,26 +24,17 @@
                     <th>No</th>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Stock</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($items as $item)
+                @foreach ($deletedItems as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->description }}</td>
-                        <td>{{ $item->category->name }}</td>
-                        <td>{{ $item->price }}</td>
-                        <td>{{ $item->stock }}</td>
                         <td>
-                            <a href="/item-edit/{{ $item->id }}">Edit</a>
-                            <a href="/item-delete/{{ $item->id }}">Delete</a>
+                            <a href="/item-restore/{{ $item->id }}">Restore</a>
                         </td>
                     </tr>
                 @endforeach

@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +30,25 @@ Route::middleware('only_guest')->group(function() {
 Route::middleware('auth')->group(function() {
     Route::get('logout', [AuthController::class, 'logout']);
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
+    Route::middleware('only_admin')->group(function() {
+        Route::get('dashboard', [DashboardController::class, 'index']);
+    
+        Route::get('items', [ItemController::class, 'list']);
+        Route::get('item-add', [ItemController::class, 'add']);
+        Route::post('item-add', [ItemController::class, 'store']);
 
-    Route::get('items', [ItemController::class, 'list']);
-    Route::get('item-add', [ItemController::class, 'add']);
-    Route::post('item-add', [ItemController::class, 'store']);
+        Route::get('item-edit/{id}', [ItemController::class, 'edit']);
+        Route::post('item-edit/{id}', [ItemController::class, 'update']);
+
+        Route::get('item-delete/{id}', [ItemController::class, 'delete']);
+        Route::get('item-destroy/{id}', [ItemController::class, 'destroy']);
+        Route::get('item-deleted', [ItemController::class, 'deletedBook']);
+        Route::get('item-restore/{id}', [ItemController::class, 'restore']);
+
+        Route::get('category-list', [ItemCategoryController::class, 'list']);
+
+        Route::get('users', [UserController::class, 'list']);
+    });
 });
 
 Route::controller(ItemController::class)->group(function () {
